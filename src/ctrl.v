@@ -7,15 +7,15 @@ module ctrl (clk, rst_f, opcode, mm, stat, rf_we, alu_op, wb_sel);
 
   /* Declare the ports listed above as inputs or outputs.  Note that this is
      only the signals for part 1.  You will be adding signals for parts 2,
-     2, and 4. /*
-  
+     2, and 4. */
+
   input clk, rst_f;
   input [3:0] opcode, mm, stat;
   output reg rf_we, wb_sel;
   output reg [3:0] alu_op;
-  
+
   // state parameter declarations
-  
+
   parameter start0 = 0, start1 = 1, fetch = 2, decode = 3, execute = 4, mem = 5, writeback = 6;
    
   // opcode parameter declarations

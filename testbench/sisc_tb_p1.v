@@ -3,7 +3,7 @@
 
 `timescale 1ns/100ps  
 
-module sisc_tb;
+module sisc_tb_p1;
 
   parameter    tclk = 10.0;    
   reg          clk;
