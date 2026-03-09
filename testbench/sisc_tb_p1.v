@@ -38,21 +38,41 @@ module sisc_tb_p1;
 
 
   initial
-  begin
-    // To test all of the arithmetic instructions:
-        ir = 32'h00000000; //NOP
+  begin  
+    
+	 // To test all of the arithmetic instructions:
+    ir = 32'h00000000; //NOP
+	 $display("[EXECUTING] NOP");
+	 
     #85 ir = 32'h21100001; //ADI  R1 <- R0 + (0x0000)0001
+	 $display("[EXECUTING] ADI R1 <- R0 + (0x0000)0001");
+	 
     #50 ir = 32'h11211000; //ADD  R2 <- R1 + R1
+	 $display("[EXECUTING] ADD R2 <- R1 + R1");
+	 
     #50 ir = 32'h1B322000; //SHL  R3 <- R2 << [R2]
+	 $display("[EXECUTING] SHL R3 <- R2 << [R2]");
+	 
     #50 ir = 32'h12412000; //SUB  R4 <- R1 - R2
+	 $display("[EXECUTING] SUB  R4 <- R1 - R2");
+	 
     #50 ir = 32'h1A443000; //SHR  R4 <- R4 >> [R3]
+	 $display("[EXECUTING] SHR R4 <- R4 >> [R3]");
     #50 ir = 32'h17234000; //XOR  R2 <- R3 ^ R4
+	 $display("[EXECUTING] XOR R2 <- R3 ^ R4");
     #50 ir = 32'h14220000; //NOT  R2 <- ~R2
+	 $display("[EXECUTING] NOT R2 <- ~R2");
     #50 ir = 32'h19421000; //ROL  R4 <- R2 <.< [R1]
+	 $display("[EXECUTING] ROL R4 <- R2 <.< [R1]");
     #50 ir = 32'h15524000; //OR   R5 <- R2 | R4
+	 $display("[EXECUTING] OR R5 <- R2 | R4");
     #50 ir = 32'h16324000; //AND  R3 <- R2 & R4
+	 $display("[EXECUTING] AND R3 <- R2 & R4");
     #50 ir = 32'h00000000; //NOP
-
+	 $display("[EXECUTING] NOP");
+	 
+	 
+	 $display("[CHECKPOINT] registers should be ........................... R1=00000001 R2=ff000008 R3=fe000000 R4=fe000011 R5=ff000019 all_remaining=00000000");
 	/*
 	 * At this point, registers should be as follows:
 	 *   R1: 00000001		R4: FE000011
@@ -62,12 +82,18 @@ module sisc_tb_p1;
 
     // To test status code generation:
     #50 ir = 32'h21100001; //ADI  R1 <- R0 + (0x0000)0001 (STAT: 0000)
+	 $display("[EXECUTING] ADI R1 <- R0 + (0x0000)0001 (STAT: 0000)");
     #50 ir = 32'h12211000; //SUB  R2 <- R1 - R1           (STAT: 0001)
+	 $display("[EXECUTING] SUB R2 <- R1 - R1           (STAT: 0001)");
     #50 ir = 32'h12201000; //SUB  R2 <- R0 - R1           (STAT: 1010)
+	 $display("[EXECUTING] SUB R2 <- R0 - R1           (STAT: 1010)");
     #50 ir = 32'h18311000; //ROR  R3 <- R1 >> [R1]
+	 $display("[EXECUTING] ROR R3 <- R1 >> [R1]");
     #50 ir = 32'h11423000; //ADD  R4 <- R2 + R3           (STAT: 1100)
+	 $display("[EXECUTING] ADD R4 <- R2 + R3           (STAT: 1100)");
+	 
     #50 ir = 32'hF0000000; //HALT
-
+	 $display("[CHECKPOINT] registers should be ........................... R1=00000001 R2=ffffffff R3=80000000 R4=7fffffff R5=ff000019 all_remaining=00000000");
   end
  
 endmodule
