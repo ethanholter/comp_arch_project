@@ -1,0 +1,9 @@
+a.out
+.nvim
+**/incremental_db/*
+**/simulation/*
+**/output_files/*
+**/db/*
+**/*.qsf
+**/*.qws
+**/*.qpf
