@@ -4,6 +4,6 @@ a.out
 **/simulation/*
 **/output_files/*
 **/db/*
-**/*.qsf
+c5_pin_model_dump.txt
+**/*.rpt
 **/*.qws
-**/*.qpf
