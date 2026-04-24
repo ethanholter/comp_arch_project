@@ -47,10 +47,10 @@ mux32   u5(alu_result, dm_read_data, wb_sel, write_data);
 statreg u6(clk, stat_in, stat_en, stat_out);
 
 // part 2
-br      BR(pc_out, instr[15:0], br_sel, br_addr);
-im      IM(pc_out, read_data);
+br      u7(pc_out, instr[15:0], br_sel, br_addr);
+im      u8(pc_out, read_data);
 ir      u9(clk, ir_load, read_data, instr);
-pc      PC(clk, br_addr, pc_sel, pc_write, pc_rst, pc_out);
+pc      u10(clk, br_addr, pc_sel, pc_write, pc_rst, pc_out);
 
 // part 3
 dm      u11(mem_addr, mem_addr, rsb, dm_we, dm_read_data);
