@@ -95,92 +95,100 @@ module ctrl (clk, rst_f, opcode, mm, stat, rf_we, alu_op, wb_sel, br_sel, pc_rst
     endcase
   end
 
-  always @(present_state, opcode)
-  begin
-  /* TODO: Generate combinational signals based on the FSM states and inputs. For Parts 2, 3 and 4 you will
-       add the new control signals here. */
-	
-	// inputs:   opcode, mm, stat
-	// outputs:  rf_we, wb_sel, alu_op 
-	
-	case(present_state)
-	
-		fetch: begin
-		  rf_we = 0;
-		  ir_load = 1;
-		  pc_write = 1;
-		end
+	  always @(present_state, opcode)
+	  begin
+	  /* TODO: Generate combinational signals based on the FSM states and inputs. For Parts 2, 3 and 4 you will
+			 add the new control signals here. */
 		
-		decode: begin
-			ir_load = 0;
-			pc_write = 0;
-
-			case(opcode)
-				REG_OP: begin
-					alu_op <= 4'b0001; 	
-					wb_sel <= 1;
-					br_sel <= 1;
-					pc_sel <= 0;
-				end
-				REG_IM: begin
-					alu_op <= 4'b1001;
-					wb_sel <= 1;
-					br_sel <= 0;
-					pc_sel <= 0;
-				end
-				BRA: begin
-					alu_op <= 4'b0000;
-					br_sel <= 1;
-					pc_sel <= (mm & stat) != 0;
-				end
-				BRR: begin
-					alu_op <= 4'b0000;
-					br_sel <= 0;
-					pc_sel <= (mm & stat) != 0;
-				end
-				BNE: begin
-					alu_op <= 4'b0000;
-					br_sel <= 1;
-					pc_sel <= (mm & stat) == 0;
-				end
-				BNR: begin
-					alu_op <= 4'b0000;
-					br_sel <= 0;
-					pc_sel <= (mm & stat) == 0;
-				end
-				default: begin
-					alu_op <= 4'b0000;
-					pc_sel <= 0;
-					wb_sel <= 1;
-				end
-			endcase
-
-		end
+		// inputs:   opcode, mm, stat
+		// outputs:  rf_we, wb_sel, alu_op 
 		
-		execute: begin
-			pc_write = 0;
-		end
+		case(present_state)
 		
-		//mem:
-			// PLACEHOLDER
+			fetch: begin
+			  rf_we <= 0;
+			  ir_load <= 1;
+			  pc_write <= 1;
+			  
+			  wb_sel <= 0; // for now this always stays off
+			end
 			
-		writeback:
-			case(opcode)
-				REG_OP: begin
-					rf_we <= 1;
-				end
-				REG_IM: begin
-					rf_we <= 1;
-				end
-				default: begin
-					rf_we = 0;
-				end
-			endcase
-		default: begin end
-	endcase
-	
+			decode: begin
+				ir_load <= 0;
+				pc_write <= 0;
 
-  end
+				case(opcode)
+					BRA: begin
+						br_sel <= 1;
+						pc_sel <= (mm & stat) != 0;
+						pc_write <= (mm & stat) != 0;
+					end
+					BRR: begin
+						br_sel <= 0;
+						pc_sel <= (mm & stat) != 0;
+						pc_write <= (mm & stat) != 0;
+					end
+					BNE: begin
+						br_sel <= 1;
+						pc_sel <= (mm & stat) == 0;
+						pc_write <= (mm & stat) == 0;
+					end
+					BNR: begin	
+						br_sel <= 0;
+						pc_sel <= (mm & stat) == 0;
+						pc_write <= (mm & stat) == 0;
+					end
+					default: begin end
+				endcase
+			end
+			
+			execute: begin
+				pc_write <= 0;
+				br_sel <= 0;
+				pc_sel <= 0;
+				
+				case(opcode)
+					REG_OP: begin
+						alu_op <= 4'b0001;
+					end
+					REG_IM: begin
+						alu_op <= 4'b0011;
+					end
+					default: begin 
+						alu_op <= 4'b0000;
+					end
+				endcase
+			end
+			
+			mem: begin
+				case(opcode)
+					REG_OP: begin
+						alu_op <= 4'b0000;
+					end
+					REG_IM: begin
+						alu_op <= 4'b0010;
+					end
+					default: begin end
+				endcase
+			
+			end
+				
+			writeback: begin
+				alu_op <= 4'b0000;
+				case(opcode)
+					REG_OP: begin
+						rf_we <= 1;
+					end
+					REG_IM: begin
+						rf_we <= 1;
+					end
+					default: begin
+						rf_we <= 0;
+					end
+				endcase
+			end
+		endcase
+	  end
 
 // Halt on HLT instruction
   
