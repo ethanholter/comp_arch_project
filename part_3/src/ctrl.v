@@ -99,6 +99,7 @@ only the signals for part 1.  You will be adding signals for parts 2,
                      pc_write <= 1;
 
                      wb_sel <= 0; // for now this always stays off
+                     rb_sel <= 0;
                  end
 
                  decode: begin
