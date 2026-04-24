@@ -1,0 +1,10 @@
+// ECE:3350 SISC processor project
+// Example data for the bubble sort program.
+//
+00000006 // :0  N = 6
+00000005 // :1  List: [5, -2, 18, 10, 0, -7]
+FFFFFFFE // :2
+00000012 // :3  Expected memory contents after execution: [-7, -2, 0, 5, 10, 18]
+0000000A // :4
+00000000 // :5
+FFFFFFF9 // :6
