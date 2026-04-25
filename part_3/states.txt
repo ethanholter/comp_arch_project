@@ -1,0 +1,7 @@
+000 start0
+001 start1
+010 fetch
+011 decode
+100 exec
+101 mem
+110 writeba

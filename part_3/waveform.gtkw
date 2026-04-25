@@ -1,0 +1,112 @@
+[*]
+[*] GTKWave Analyzer v3.3.121 (w)1999-2024 BSI
+[*] Sat Apr 25 01:08:37 2026
+[*]
+[dumpfile] "/home/ethan/School/Computer_Architecture/comp_arch_project/part_3/waveform.vcd"
+[dumpfile_mtime] "Sat Apr 25 01:01:51 2026"
+[dumpfile_size] 65055
+[savefile] "/home/ethan/School/Computer_Architecture/comp_arch_project/part_3/waveform.gtkw"
+[timestart] 2763100
+[size] 1920 1121
+[pos] -27 -24
+*-15.885602 2860500 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] sisc_checkpoint_tb.
+[treeopen] sisc_checkpoint_tb.uut.
+[sst_width] 290
+[signals_width] 248
+[sst_expanded] 1
+[sst_vpaned_height] 338
+@100002029
+^1 /home/ethan/School/Computer_Architecture/comp_arch_project/part_3/states.txt
+sisc_checkpoint_tb.uut.u1.present_state[2:0]
+@c00022
+sisc_checkpoint_tb.uut.instr[31:0]
+@28
+(0)sisc_checkpoint_tb.uut.instr[31:0]
+(1)sisc_checkpoint_tb.uut.instr[31:0]
+(2)sisc_checkpoint_tb.uut.instr[31:0]
+(3)sisc_checkpoint_tb.uut.instr[31:0]
+(4)sisc_checkpoint_tb.uut.instr[31:0]
+(5)sisc_checkpoint_tb.uut.instr[31:0]
+(6)sisc_checkpoint_tb.uut.instr[31:0]
+(7)sisc_checkpoint_tb.uut.instr[31:0]
+(8)sisc_checkpoint_tb.uut.instr[31:0]
+(9)sisc_checkpoint_tb.uut.instr[31:0]
+(10)sisc_checkpoint_tb.uut.instr[31:0]
+(11)sisc_checkpoint_tb.uut.instr[31:0]
+(12)sisc_checkpoint_tb.uut.instr[31:0]
+(13)sisc_checkpoint_tb.uut.instr[31:0]
+(14)sisc_checkpoint_tb.uut.instr[31:0]
+(15)sisc_checkpoint_tb.uut.instr[31:0]
+(16)sisc_checkpoint_tb.uut.instr[31:0]
+(17)sisc_checkpoint_tb.uut.instr[31:0]
+(18)sisc_checkpoint_tb.uut.instr[31:0]
+(19)sisc_checkpoint_tb.uut.instr[31:0]
+(20)sisc_checkpoint_tb.uut.instr[31:0]
+(21)sisc_checkpoint_tb.uut.instr[31:0]
+(22)sisc_checkpoint_tb.uut.instr[31:0]
+(23)sisc_checkpoint_tb.uut.instr[31:0]
+(24)sisc_checkpoint_tb.uut.instr[31:0]
+(25)sisc_checkpoint_tb.uut.instr[31:0]
+(26)sisc_checkpoint_tb.uut.instr[31:0]
+(27)sisc_checkpoint_tb.uut.instr[31:0]
+(28)sisc_checkpoint_tb.uut.instr[31:0]
+(29)sisc_checkpoint_tb.uut.instr[31:0]
+(30)sisc_checkpoint_tb.uut.instr[31:0]
+(31)sisc_checkpoint_tb.uut.instr[31:0]
+@1401200
+-group_end
+@22
+sisc_checkpoint_tb.uut.alu_result[31:0]
+sisc_checkpoint_tb.uut.u11.read_data[31:0]
+@c00022
+sisc_checkpoint_tb.uut.u11.write_data[31:0]
+@28
+(0)sisc_checkpoint_tb.uut.u11.write_data[31:0]
+(1)sisc_checkpoint_tb.uut.u11.write_data[31:0]
+(2)sisc_checkpoint_tb.uut.u11.write_data[31:0]
+(3)sisc_checkpoint_tb.uut.u11.write_data[31:0]
+(4)sisc_checkpoint_tb.uut.u11.write_data[31:0]
+(5)sisc_checkpoint_tb.uut.u11.write_data[31:0]
+(6)sisc_checkpoint_tb.uut.u11.write_data[31:0]
+(7)sisc_checkpoint_tb.uut.u11.write_data[31:0]
+(8)sisc_checkpoint_tb.uut.u11.write_data[31:0]
+(9)sisc_checkpoint_tb.uut.u11.write_data[31:0]
+(10)sisc_checkpoint_tb.uut.u11.write_data[31:0]
+(11)sisc_checkpoint_tb.uut.u11.write_data[31:0]
+(12)sisc_checkpoint_tb.uut.u11.write_data[31:0]
+(13)sisc_checkpoint_tb.uut.u11.write_data[31:0]
+(14)sisc_checkpoint_tb.uut.u11.write_data[31:0]
+(15)sisc_checkpoint_tb.uut.u11.write_data[31:0]
+(16)sisc_checkpoint_tb.uut.u11.write_data[31:0]
+(17)sisc_checkpoint_tb.uut.u11.write_data[31:0]
+(18)sisc_checkpoint_tb.uut.u11.write_data[31:0]
+(19)sisc_checkpoint_tb.uut.u11.write_data[31:0]
+(20)sisc_checkpoint_tb.uut.u11.write_data[31:0]
+(21)sisc_checkpoint_tb.uut.u11.write_data[31:0]
+(22)sisc_checkpoint_tb.uut.u11.write_data[31:0]
+(23)sisc_checkpoint_tb.uut.u11.write_data[31:0]
+(24)sisc_checkpoint_tb.uut.u11.write_data[31:0]
+(25)sisc_checkpoint_tb.uut.u11.write_data[31:0]
+(26)sisc_checkpoint_tb.uut.u11.write_data[31:0]
+(27)sisc_checkpoint_tb.uut.u11.write_data[31:0]
+(28)sisc_checkpoint_tb.uut.u11.write_data[31:0]
+(29)sisc_checkpoint_tb.uut.u11.write_data[31:0]
+(30)sisc_checkpoint_tb.uut.u11.write_data[31:0]
+(31)sisc_checkpoint_tb.uut.u11.write_data[31:0]
+@1401200
+-group_end
+@28
+sisc_checkpoint_tb.uut.u1.wb_sel
+sisc_checkpoint_tb.uut.u1.rf_we
+@22
+sisc_checkpoint_tb.uut.u11.write_addr[15:0]
+@28
+sisc_checkpoint_tb.uut.u1.mm_sel
+@22
+sisc_checkpoint_tb.uut.u12.out[15:0]
+@28
+sisc_checkpoint_tb.uut.u1.dm_we
+sisc_checkpoint_tb.uut.u1.rb_sel
+[pattern_trace] 1
+[pattern_trace] 0

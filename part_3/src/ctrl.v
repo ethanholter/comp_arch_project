@@ -85,9 +85,6 @@ only the signals for part 1.  You will be adding signals for parts 2,
 
           always @(present_state, opcode)
           begin
-              /* TODO: Generate combinational signals based on the FSM states and inputs. For Parts 2, 3 and 4 you will
-              add the new control signals here. */
-
              // inputs:   opcode, mm, stat
              // outputs:  rf_we, wb_sel, alu_op 
 
@@ -97,9 +94,8 @@ only the signals for part 1.  You will be adding signals for parts 2,
                      rf_we <= 0;
                      ir_load <= 1;
                      pc_write <= 1;
-
-                     wb_sel <= 0; // for now this always stays off
                      rb_sel <= 0;
+                     dm_we = 0;
                  end
 
                  decode: begin
@@ -111,23 +107,44 @@ only the signals for part 1.  You will be adding signals for parts 2,
                              br_sel <= 1;
                              pc_sel <= (mm & stat) != 0;
                              pc_write <= (mm & stat) != 0;
+                             rb_sel <= 0;
+                             wb_sel <= 0;
                          end
                          BRR: begin
                              br_sel <= 0;
                              pc_sel <= (mm & stat) != 0;
                              pc_write <= (mm & stat) != 0;
+                             rb_sel <= 0;
+                             wb_sel <= 0;
                          end
                          BNE: begin
                              br_sel <= 1;
                              pc_sel <= (mm & stat) == 0;
                              pc_write <= (mm & stat) == 0;
+                             rb_sel <= 0;
+                             wb_sel <= 0;
                          end
                          BNR: begin	
-                         br_sel <= 0;
-                         pc_sel <= (mm & stat) == 0;
-                         pc_write <= (mm & stat) == 0;
-                     end
-                     default: begin end
+                             br_sel <= 0;
+                             pc_sel <= (mm & stat) == 0;
+                             pc_write <= (mm & stat) == 0;
+                             rb_sel <= 0;
+                             wb_sel <= 0;
+                         end
+                         LOD: begin
+                             mm_sel <= mm == 0;
+                             rb_sel <= 1;
+                             wb_sel <= 1;
+                         end
+                         STR: begin
+                             mm_sel <= mm == 0;
+                             rb_sel <= 1;
+                             wb_sel <= 0;
+                         end
+                         default: begin
+                             rb_sel <= 0;
+                             wb_sel <= 0;
+                         end
                  endcase
              end
 
@@ -143,6 +160,22 @@ only the signals for part 1.  You will be adding signals for parts 2,
                      REG_IM: begin
                          alu_op <= 4'b0011;
                      end
+                     STR: begin
+                         if (mm == 4'b1000) begin
+                             alu_op <= 4'b0101;
+                         end
+                         if (mm == 4'b0001) begin
+                             alu_op <= 4'b1100;
+                         end
+                     end
+                     LOD: begin
+                         if (mm == 4'b1000) begin
+                             alu_op <= 4'b0101;
+                         end
+                         if (mm == 4'b0001) begin
+                             alu_op <= 4'b1100;
+                         end
+                     end
                      default: begin 
                      alu_op <= 4'b0000;
                  end
@@ -157,6 +190,9 @@ only the signals for part 1.  You will be adding signals for parts 2,
                  REG_IM: begin
                      alu_op <= 4'b0010;
                  end
+                 STR: begin
+                     dm_we <= 1;
+                 end
                  default: begin end
              endcase
 
@@ -169,6 +205,9 @@ only the signals for part 1.  You will be adding signals for parts 2,
                      rf_we <= 1;
                  end
                  REG_IM: begin
+                     rf_we <= 1;
+                 end
+                 LOD: begin
                      rf_we <= 1;
                  end
                  default: begin

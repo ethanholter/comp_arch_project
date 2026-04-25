@@ -15,6 +15,7 @@ wire [31:0] alu_result;
 wire [31:0] write_data;
 wire [31:0] instr;
 wire [31:0] read_data;
+wire [31:0] dm_read_data;
 
 wire [15:0] br_addr;
 wire [15:0] pc_out;
@@ -60,6 +61,8 @@ mux4    u13(instr[15:12], instr[23:20], rb_sel, regb);
 
 
 initial begin
+    $dumpfile("waveform.vcd");
+    $dumpvars(0, sisc); // Replaces top_module_name with your testbench module name
     $monitor($time,,"IR=%h RSA=%h RSB=%h | R1=%h R2=%h R3=%h R4=%h R5=%h | ALU_OP=%b FUNC=%b STAT=%b | WB_SEL=%h RF_WE=%h WD=%h", 
 	instr,
 	rsa,   
