@@ -16,7 +16,8 @@ only the signals for part 1.  You will be adding signals for parts 2,
    output reg rf_we, wb_sel;
    output reg [3:0] alu_op;
    output reg br_sel, pc_rst, pc_write, pc_sel, ir_load;
-   output reg rb_sel, mm_sel, dm_we;
+   output reg rb_sel, mm_sel;
+   output reg dm_we = 0;
 
    // state parameter declarations
 

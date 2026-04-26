@@ -55,7 +55,7 @@ pc      u10(clk, br_addr, pc_sel, pc_write, pc_rst, pc_out);
 
 // part 3
 dm      u11(mem_addr, mem_addr, rsb, dm_we, dm_read_data);
-mux16   u12(alu_result, instr[15:0], mm_sel, mem_addr);
+mux16   u12(alu_result[15:0], instr[15:0], mm_sel, mem_addr);
 mux4    u13(instr[15:12], instr[23:20], rb_sel, regb);
 
 
@@ -82,5 +82,12 @@ initial begin
 end
 always @(instr) begin
     $display("[%h]: %h", pc_out, instr);
+
+    if (instr == 32'hF0000000) begin : mem_dump
+        integer i;
+        $display("Mem dump:");
+        for (i = 0; i < 8; i = i + 1)
+            $display("  M[%0d] = %0d", i, $signed(u11.ram_array[i]));
+    end
 end
 endmodule
