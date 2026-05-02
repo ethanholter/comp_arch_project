@@ -43,7 +43,7 @@ wire dm_we;
 // part 1
 ctrl    u1 (clk, rst_f, instr[31:28], instr[27:24], stat_out, rf_we, alu_op, wb_sel, br_sel, pc_rst, pc_write, pc_sel, ir_load, rb_sel, mm_sel, dm_we);
 rf      u2(clk, instr[19:16], regb, instr[23:20], write_data, rf_we, rsa, rsb);
-alu     u3 (clk, rsa, rsb, instr[15:0], stat_out[0], alu_op, instr[27:24], alu_result, stat_in, stat_en);
+alu     u3 (clk, rsa, rsb, instr[15:0], stat_out[3], alu_op, instr[27:24], alu_result, stat_in, stat_en);
 mux32   u5(alu_result, dm_read_data, wb_sel, write_data);
 statreg u6(clk, stat_in, stat_en, stat_out);
 

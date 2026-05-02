@@ -1,0 +1,19 @@
+21300000 // 0x00        clr r3            ; product hi
+21400000 // 0x01        clr r4            ; product lo
+21500020 // 0x02        lri r5, #32       ; counter
+A0600001 // 0x03        lda r6, 0x1       ; r shifted multiplier
+21700000 // 0x04        lri r7, #0        ; l shifted multiplicand_hi
+A0800000 // 0x05        lda r8, 0x0       ; l shifted multiplicand_lo
+26F60001 // 0x06 loop:  ani r15, r6, #1   ; extract rightmost bit from multiplier 
+51000003 // 0x07        brr, #3, 0b0001   ; if zero skip the add
+11448000 // 0x08        add, r4, r4, r8   ; add multiplicand lo to product lo
+23330000 // 0x09        aci r3, r3, #0    ; add carry from lo to product hi
+11337000 // 0x0a        add r3, r3, r7    ; add multiplicand hi to product hi
+2F880001 // 0x0b skip:  asli, r8, r8, #1  ; shift multiplicand left (mult by 2) lo
+2D770001 // 0x0c        rlci, r7, r7, #1  ; shift carry into multiplicand hi
+2A660001 // 0x0d        shri, r6, r6, #1  ; r shift multiplier
+2155FFFF // 0x0e        dec r5
+61000006 // 0x0f        bnr loop, 0x0001
+B0400002 // 0x10        sta 0x2, r4
+B0300003 // 0x11        sta 0x3, r3
+F0000000 // 0x12        hlt

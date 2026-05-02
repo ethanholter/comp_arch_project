@@ -5,10 +5,10 @@ A0400000 //       0x00 lda r4, 6
 A8210000 // NEXT: 0x02 ldx r2, r1, 0
 A8310001 //       0x03 ldx r3, r1, 1
 12732000 //       0x04 sub r7, r3, r2  ; set neg bit if r2 > r3
-62000008 //       0x05 bne A, 0010     ; skip swap if neg r3 > r2
+62000008 //       0x05 bne NSWP, 0010  ; skip swap if neg r3 > r2
 B8310000 //       0x06 stx r3, r1, 0
 B8210001 //       0x07 stx r2, r1, 1
-21110001 //    A: 0x08 inc r1
+21110001 // NSWP: 0x08 inc r1
 12741000 //       0x09 sub r7, r4,r1   ; set zero bit if at end of list
 61000002 //       0x0A bne NEXT, 0001  ; go to next compare if not at end 0B dec r4
 2144FFFF //       0x0B dec r4
